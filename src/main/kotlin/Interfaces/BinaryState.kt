@@ -1,7 +1,7 @@
 package Interfaces
 
-import IntegerDetector
+import BinaryNumberDetector
 
 interface BinaryState {
-    fun handle(char: Char, context: IntegerDetector)
+    fun handle(char: Char, context: BinaryNumberDetector)
 }

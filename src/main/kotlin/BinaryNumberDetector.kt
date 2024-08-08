@@ -13,4 +13,13 @@ class BinaryNumberDetector {
         state.handle(char, this)
         return state is ValidState
     }
+
+    fun run(input: String): Boolean {
+        for (char in input) {
+            if (!handle(char)) {
+                return false
+            }
+        }
+        return state is ValidState
+    }
 }

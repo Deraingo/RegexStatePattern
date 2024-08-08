@@ -13,4 +13,13 @@ class EmailDetector {
         state.handle(char, this)
         return state is PeriodState
     }
+
+    fun run(input: String): Boolean {
+        for (char in input) {
+            if (!handle(char)) {
+                return false
+            }
+        }
+        return state is PeriodState
+    }
 }

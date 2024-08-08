@@ -13,4 +13,13 @@ class FloatingPointDetector {
         state.handle(char, this)
         return state is ValidDigitState
     }
+
+    fun run(input: String): Boolean {
+        for (char in input) {
+            if (!handle(char)) {
+                return false
+            }
+        }
+        return state is ValidDigitState
+    }
 }

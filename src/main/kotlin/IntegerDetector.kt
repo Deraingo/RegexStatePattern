@@ -9,8 +9,17 @@ class IntegerDetector {
         this.state = state
     }
 
-    fun handle(char: Char): Boolean {
-        state.handle(char, this)
+    fun handle(input: Char): Boolean {
+        state.handle(input, this)
+        return state is ValidDigitState
+    }
+
+    fun run(input: String): Boolean {
+        for (char in input) {
+            if (!handle(char)) {
+                return false
+            }
+        }
         return state is ValidDigitState
     }
 }
