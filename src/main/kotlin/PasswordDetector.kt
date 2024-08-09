@@ -1,8 +1,9 @@
+import Interfaces.Detector
 import Interfaces.PasswordState
 import StateControllers.PasswordState.StartState
 import StateControllers.PasswordState.ValidState
 
-class PasswordDetector {
+class PasswordDetector : Detector {
     private var state: PasswordState = StartState()
 
     fun setState(state: PasswordState) {
@@ -14,12 +15,13 @@ class PasswordDetector {
         return state is ValidState
     }
 
-    fun run(input: String): Boolean {
-        for (char in input) {
-            if (!handle(char)) {
-                return false
-            }
-        }
-        return state is ValidState
+    override fun run(password: String): Boolean {
+        if (password.isEmpty()) return false
+
+        val hasCapital = password.any { it.isUpperCase() }
+        val hasSpecial = password.any { it in "!@#$%^&*()-_+=<>?/,.|;:" }
+        val endsWithSpecial = password.lastOrNull()!! in "!@#$%^&*()-_+=<>?/,.|;:"
+
+        return hasCapital && hasSpecial && !endsWithSpecial
     }
 }

@@ -1,13 +1,13 @@
 package StateControllers.BinaryState
 
-import BinaryNumberDetector
 import Interfaces.BinaryState
+import BinaryNumberDetector
 
-class StartState : BinaryState {
+class ZeroState : BinaryState {
     override fun handle(char: Char, context: BinaryNumberDetector) {
         when (char) {
-            '1' -> context.setState(ValidState())
-            '0' -> context.setState(InvalidState())
+            '1' -> context.setState(OneState())
+            '0' -> context.setState(ZeroState())
             else -> context.setState(InvalidState())
         }
     }

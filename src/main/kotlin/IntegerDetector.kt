@@ -1,8 +1,9 @@
+import Interfaces.Detector
 import Interfaces.IntegerState
 import StateControllers.IntegerState.StartState
 import StateControllers.IntegerState.ValidDigitState
 
-class IntegerDetector {
+class IntegerDetector : Detector {
     private var state: IntegerState = StartState()
 
     fun setState(state: IntegerState) {
@@ -14,7 +15,7 @@ class IntegerDetector {
         return state is ValidDigitState
     }
 
-    fun run(input: String): Boolean {
+    override fun run(input: String): Boolean {
         for (char in input) {
             if (!handle(char)) {
                 return false

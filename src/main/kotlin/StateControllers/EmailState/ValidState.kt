@@ -1,15 +1,16 @@
 package StateControllers.EmailState
 
-import Interfaces.EmailState
 import EmailDetector
-class PeriodState : EmailState {
+import Interfaces.EmailState
+
+class ValidState : EmailState{
     override fun handle(char: Char, context: EmailDetector) {
-        when {
-            char.isLetterOrDigit() -> {
-                context.setState(ValidState())
+        when{
+            char.isLetterOrDigit() || char == '.' -> {
+                context.setState(this)
             }
-            char == '.' -> {
-                context.setState(InvalidState())
+            char == '@' -> {
+                context.setState(DomainState())
             }
             else -> {
                 context.setState(InvalidState())

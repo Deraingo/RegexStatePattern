@@ -5,6 +5,9 @@ import PasswordDetector
 
 class StartState : PasswordState {
     override fun handle(char: Char, context: PasswordDetector) {
-        context.setState(ValidState()) // Replace with appropriate logic
+        when {
+            char.isUpperCase() -> context.setState(CapitalState())
+            else -> context.setState(InvalidState())
+        }
     }
 }

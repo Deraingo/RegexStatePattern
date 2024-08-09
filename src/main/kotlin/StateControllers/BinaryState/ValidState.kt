@@ -5,8 +5,9 @@ import Interfaces.BinaryState
 
 class ValidState : BinaryState {
     override fun handle(char: Char, context: BinaryNumberDetector) {
-        if (char != '0' && char != '1') {
-            context.setState(InvalidState())
+        when (char) {
+            '0', '1' -> context.setState(this)
+            else -> context.setState(InvalidState())
         }
     }
 }

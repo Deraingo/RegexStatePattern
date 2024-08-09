@@ -3,9 +3,11 @@ package StateControllers.PasswordState
 import Interfaces.PasswordState
 import PasswordDetector
 
-class ValidState : PasswordState {
+class SpecialState : PasswordState {
     override fun handle(char: Char, context: PasswordDetector) {
-        if (char in "!@#$%&*") {
+        if (char.isLetterOrDigit()) {
+            context.setState(ValidState())
+        } else {
             context.setState(InvalidEndState())
         }
     }

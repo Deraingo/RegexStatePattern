@@ -5,6 +5,6 @@ import Interfaces.EmailState
 
 class InvalidState : EmailState {
     override fun handle(char: Char, context: EmailDetector) {
-        // Remain in this state
+
     }
 }

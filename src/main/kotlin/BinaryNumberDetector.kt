@@ -1,8 +1,9 @@
 import Interfaces.BinaryState
+import Interfaces.Detector
 import StateControllers.BinaryState.StartState
 import StateControllers.BinaryState.ValidState
 
-class BinaryNumberDetector {
+class BinaryNumberDetector : Detector {
     private var state: BinaryState = StartState()
 
     fun setState(state: BinaryState) {
@@ -14,12 +15,14 @@ class BinaryNumberDetector {
         return state is ValidState
     }
 
-    fun run(input: String): Boolean {
+    override fun run(input: String): Boolean {
+        var lastChar: Char? = null
         for (char in input) {
+            lastChar = char
             if (!handle(char)) {
                 return false
             }
         }
-        return state is ValidState
+        return state is ValidState && lastChar == '1'
     }
 }
