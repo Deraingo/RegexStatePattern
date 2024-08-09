@@ -22,7 +22,6 @@ class FloatingPointDetector : Detector {
             state.handle(char, this)
             if (state is InvalidState) return false
         }
-        // Ensure there's a digit after the period
         return state is ValidDigitState || state is ValidDigitAfterPeriodState
     }
 }
